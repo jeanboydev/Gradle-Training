@@ -3,6 +3,9 @@ package com.jeanboy.plugin.test
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 
+/**
+ * 自定义插件
+ */
 class TestPlugin implements Plugin<Project> {
 
     @Override
@@ -12,5 +15,10 @@ class TestPlugin implements Plugin<Project> {
             println("hello gradle plugin!")
             println("========================")
         }
+
+        // 创建扩展属性
+        project.extensions.create("pluginExtension", PluginExtension)
+        // 创建 Task
+        project.tasks.create("pluginTask", PluginTask)
     }
 }
