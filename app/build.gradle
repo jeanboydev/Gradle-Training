@@ -1,5 +1,5 @@
 apply plugin: 'com.android.application'
-apply plugin: 'com.jeanboy.plugin.test' // 使用自定义的插件
+//apply plugin: 'com.jeanboy.plugin.test' // 使用自定义的插件
 
 android {
     compileSdkVersion 29
@@ -12,18 +12,24 @@ android {
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
+
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 }
 
-pluginExtension {
-    param1 = "haha"
-    param2 = "hehe"
-}
+//pluginExtension {
+//    param1 = "haha"
+//    param2 = "hehe"
+//}
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
@@ -32,4 +38,10 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+
+
+    implementation project(path: ':module_annotation')
+    annotationProcessor project(path: ':module_compiler')
+
+
 }
