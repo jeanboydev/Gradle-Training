@@ -10,7 +10,7 @@ import java.util.List;
  * @author caojianbo
  * @since 2020/1/16 17:21
  */
-public class UserModelConverter {
+public class TemplateConverter {
 
     public UserModel transform(UserEntity from) {
         UserModel to = new UserModel();

@@ -253,7 +253,7 @@ public class TransformProcessor extends AbstractProcessor {
 
         MethodSpec.Builder transformBuilder = MethodSpec.methodBuilder("transform");
 
-        transformBuilder.addModifiers(Modifier.PUBLIC)
+        transformBuilder.addModifiers(Modifier.PUBLIC, Modifier.STATIC)
                 .returns(ClassName.get(productPackage, productClass))
                 .addParameter(ClassName.get(sourcePackage, sourceClass), "source")
                 .addStatement("$T product = new $T()", product, product);
@@ -261,19 +261,17 @@ public class TransformProcessor extends AbstractProcessor {
         for (String classIdentify : methodTree.keySet()) {
             messager.printMessage(Diagnostic.Kind.WARNING,
                     "=====*******************==classIdentify======" + classIdentify);
-
             Map<String, String[]> fieldMap = methodTree.get(classIdentify);
             if (fieldMap != null) {
                 for (String fieldIdentity : fieldMap.keySet()) {
                     messager.printMessage(Diagnostic.Kind.WARNING,
                             "====************===fieldIdentity======" + fieldIdentity);
-
                     String[] methodName = fieldMap.get(fieldIdentity);
-                    transformBuilder.addStatement("product.$L(source.$L())", methodName[1], methodName[0]);
+                    transformBuilder.addStatement("product.$L(source.$L())", methodName[1],
+                            methodName[0]);
                 }
             }
         }
-
 
         MethodSpec transform = transformBuilder.addStatement("return product")
                 .build();

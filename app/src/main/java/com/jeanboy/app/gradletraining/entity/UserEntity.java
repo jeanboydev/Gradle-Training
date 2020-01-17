@@ -16,6 +16,15 @@ public class UserEntity {
     @Field(identity = "can")
     private boolean isCanDo;
 
+    @Field(identity = "age")
+    private int ageCount;
+
+    @Field(identity = "updated")
+    private boolean updatedState;
+
+    @Field(identity = "createAt")
+    private Long createAtTime;
+
     public boolean isCanDo() {
         return isCanDo;
     }
@@ -30,5 +39,29 @@ public class UserEntity {
 
     public void setUserName(String userName) {
         this.userName = userName;
+    }
+
+    public int getAgeCount() {
+        return ageCount;
+    }
+
+    public void setAgeCount(int ageCount) {
+        this.ageCount = ageCount;
+    }
+
+    public boolean isUpdatedState() {
+        return updatedState;
+    }
+
+    public void setUpdatedState(boolean updatedState) {
+        this.updatedState = updatedState;
+    }
+
+    public Long getCreateAtTime() {
+        return createAtTime;
+    }
+
+    public void setCreateAtTime(Long createAtTime) {
+        this.createAtTime = createAtTime;
     }
 }
