@@ -1,17 +1,28 @@
 package com.jeanboy.app.gradletraining.model;
 
-import com.jeanboy.module.annotation.To;
+import com.jeanboy.module.annotation.Product;
 import com.jeanboy.module.annotation.Field;
 
 /**
  * @author caojianbo
  * @since 2020/1/16 16:46
  */
-@To("user")
+@Product("user")
 public class UserModel {
 
-    @Field(name = "haha")
+    @Field(identity = "haha")
     private String name;
+
+    @Field(identity = "can")
+    private boolean isCan;
+
+    public boolean isCan() {
+        return isCan;
+    }
+
+    public void setCan(boolean can) {
+        isCan = can;
+    }
 
     public String getName() {
         return name;
