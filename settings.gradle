@@ -1,2 +1,2 @@
-include ':app', ':plugin_test', ':module_annotation', ':module_compiler'
+include ':app', ':plugin_test'
 rootProject.name='GradleTraining'
