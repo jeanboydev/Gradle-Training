@@ -1,5 +1,6 @@
 apply plugin: 'com.android.application'
 //apply plugin: 'com.jeanboy.plugin.test' // 使用自定义的插件
+apply plugin: 'com.jeanboy.plugin.build' // 使用自定义的插件
 
 android {
     compileSdkVersion 29
@@ -31,6 +32,12 @@ android {
 //    param2 = "hehe"
 //}
 
+// 自定义 task 计时插件
+taskExecTime {
+    threshold 100
+    sorted true
+}
+
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'androidx.appcompat:appcompat:1.1.0'
@@ -39,5 +46,19 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 
-
 }
+
+println("app 子项目配置开始...")
+
+afterEvaluate {
+    println("app 子项目 afterEvaluate 回调...")
+}
+
+task appTest {
+    println("app 子项目里任务配置...")
+    doLast {
+        println("执行子项目任务")
+    }
+}
+
+println("app 子项目配置结束...")
