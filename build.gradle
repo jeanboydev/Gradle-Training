@@ -13,6 +13,8 @@ buildscript {
         // 添加插件依赖
 //        classpath 'com.jeanboy.plugin.test:TestPlugin:1.0.1'
         classpath 'com.jeanboy.plugin.build:BuildTimePlugin:1.0.1'
+        classpath 'com.jeanboy.plugin.transform:TransformPlugin:1.0.1'
+        classpath 'com.jeanboy.plugin.asm:ASMPlugin:1.0.1'
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files

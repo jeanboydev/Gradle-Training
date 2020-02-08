@@ -1,4 +1,4 @@
-include ':app', ':plugin_test', ':plugin_build'
+include ':app', ':plugin_test', ':plugin_build', ':plugin_transform', ':plugin_asm'
 rootProject.name = 'GradleTraining'
 
 gradle.beforeProject { project ->

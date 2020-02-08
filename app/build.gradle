@@ -1,6 +1,8 @@
 apply plugin: 'com.android.application'
 //apply plugin: 'com.jeanboy.plugin.test' // 使用自定义的插件
 apply plugin: 'com.jeanboy.plugin.build' // 使用自定义的插件
+apply plugin: 'com.jeanboy.plugin.transform' // 使用自定义的插件
+apply plugin: 'com.jeanboy.plugin.asm' // 使用自定义的插件
 
 android {
     compileSdkVersion 29
