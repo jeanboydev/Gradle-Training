@@ -10,11 +10,6 @@ buildscript {
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.5.3'
-        // 添加插件依赖
-//        classpath 'com.jeanboy.plugin.test:TestPlugin:1.0.1'
-        classpath 'com.jeanboy.plugin.build:BuildTimePlugin:1.0.1'
-        classpath 'com.jeanboy.plugin.transform:TransformPlugin:1.0.1'
-        classpath 'com.jeanboy.plugin.asm:ASMPlugin:1.0.1'
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
@@ -32,17 +27,43 @@ task clean(type: Delete) {
     delete rootProject.buildDir
 }
 
-subprojects { sub ->
-    sub.beforeEvaluate { project ->
-        println("子项目 beforeEvaluate 回调")
+// task 测试
+task myTask1 {
+    println("这是 Task1")
+}
+myTask1.doFirst {
+    println("这是 Task1 doFirst")
+}
+myTask1.doLast {
+    println("这是 Task1 doLast")
+}
+
+task myTask2 {
+    println("这是 Task2")
+}
+myTask2.doFirst {
+    println("这是 Task1 doFirst")
+}
+myTask2.doLast {
+    println("这是 Task1 doLast")
+}
+
+
+
+task Task1 {
+    println "Task1"
+}
+// Task2 依赖 Task1
+task Task2(dependsOn: Task1) {
+    doLast {
+        println "Task2"
     }
 }
 
-println("root 项目任务配置开始...")
-task rootTest {
-    println("root 项目任务配置...")
+// Task3 依赖 Task1、Task2
+task Task3 {
+    dependsOn Task1,Task2
     doLast {
-        println("执行 root 项目任务...")
+        println "Task3"
     }
 }
-println("root 项目任务配置结束...")
