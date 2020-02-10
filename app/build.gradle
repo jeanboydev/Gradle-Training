@@ -1,5 +1,6 @@
 apply plugin: 'com.android.application'
 apply plugin: 'com.jeanboy.plugin.buildsrc'
+apply plugin: 'com.jeanboy.plugin.test'
 
 android {
     compileSdkVersion 29
