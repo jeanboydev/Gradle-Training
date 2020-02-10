@@ -4,6 +4,8 @@ apply plugin: 'maven' // 用于发布本地 maven 仓库中
 dependencies {
     implementation gradleApi() // gradle sdk
     implementation localGroovy() // groovy sdk
+
+    implementation 'com.android.tools.build:gradle:3.5.3' // Transform API
 }
 
 repositories {
