@@ -9,6 +9,7 @@ import com.jeanboy.plugin.annotation.TimeMark;
 
 public class MainActivity extends AppCompatActivity {
 
+    @TimeMark
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

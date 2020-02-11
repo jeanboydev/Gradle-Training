@@ -3,7 +3,7 @@ package com.jeanboy.plugin.annotation;
 import java.util.HashMap;
 import java.util.Map;
 
-class TimeHelper {
+public class TimeHelper {
 
     private static Map<String, Long> startTimeMap = new HashMap<>();
     private static Map<String, Long> endTimeMap = new HashMap<>();
@@ -19,6 +19,6 @@ class TimeHelper {
     public static String getCostTime(String methodName) {
         long start = startTimeMap.get(methodName);
         long end = endTimeMap.get(methodName);
-        return "method: " + methodName + ", cost: " + (start - end);
+        return "method: " + methodName + "(), cost: " + (end - start);
     }
 }
