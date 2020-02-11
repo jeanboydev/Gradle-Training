@@ -1,24 +1,14 @@
-package com.jeanboy.plugin.test
+package com.jeanboy.plugin.buildsrc
 
-import com.android.build.api.transform.DirectoryInput
-import com.android.build.api.transform.Format
-import com.android.build.api.transform.JarInput
-import com.android.build.api.transform.QualifiedContent
-import com.android.build.api.transform.Status
-import com.android.build.api.transform.Transform
-import com.android.build.api.transform.TransformException
-import com.android.build.api.transform.TransformInput
-import com.android.build.api.transform.TransformInvocation
-import com.android.build.api.transform.TransformOutputProvider
+import com.android.build.api.transform.*
 import com.android.build.gradle.internal.pipeline.TransformManager
 import org.apache.commons.io.FileUtils
 
-
-class TestTransform extends Transform {
+class TestTransform2 extends Transform {
 
     @Override
     String getName() {
-        return "TestTransform"
+        return "TestTransform2"
     }
 
     @Override
@@ -39,23 +29,32 @@ class TestTransform extends Transform {
     @Override
     void transform(TransformInvocation transformInvocation) throws TransformException, InterruptedException, IOException {
         super.transform(transformInvocation)
+        println("=====transform===================start============")
         // 管理输出路径
         def outputProvider = transformInvocation.outputProvider
         // 当前是否是增量编译
         def isIncremental = transformInvocation.isIncremental()
-        if (!isIncremental) {
+        if (!isIncremental) { // 不是增量编译，清空目录
             outputProvider.deleteAll()
         }
         transformInvocation.inputs.each { input ->
-            processDirectory(input.directoryInputs, outputProvider, isIncremental)
-            processJar(input.jarInputs, outputProvider, isIncremental)
+            println("--transform--directoryInputs--------${input.directoryInputs.size()}")
+            println("--transform--jarInputs--------${input.jarInputs.size()}")
+            input.directoryInputs.each { directoryInput ->
+                processDirectory(directoryInput, outputProvider, isIncremental)
+            }
+            input.jarInputs.each { jarInput ->
+                processJar(jarInput, outputProvider, isIncremental)
+            }
         }
+        println("=====transform===================end============")
     }
 
     void processDirectory(DirectoryInput input, TransformOutputProvider outputProvider, boolean isIncremental) {
         def dest = outputProvider.getContentLocation(input.name,
                 input.contentTypes, input.scopes, Format.DIRECTORY)
-        if (isIncremental) {
+
+        if (isIncremental) { // 增量编译
             def inputPath = input.getFile().getAbsolutePath()
             def outputPath = dest.getAbsolutePath()
             input.changedFiles.each { changeFile ->
@@ -89,14 +88,15 @@ class TestTransform extends Transform {
         def dest = outputProvider.getContentLocation(input.name,
                 input.contentTypes, input.scopes, Format.JAR)
 
-        if (isIncremental) {
+        if (isIncremental) { // 增量编译
             def status = input.getStatus()
             switch (status) {
                 case Status.NOTCHANGED:
                     break
                 case Status.ADDED:
                 case Status.CHANGED:
-                    // transformJar(jarInput.getFile(), dest, status)
+                    // 注入代码
+                    InjectByJavassit.injectToast(project, input.file)
                     break
                 case Status.REMOVED:
                     if (dest.exists()) {
