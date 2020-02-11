@@ -13,10 +13,10 @@ public class Test {
     }
 
     public void testTime() {
-//        Log.e("jeanboy", "-------method() start-----------");
-//        TimeHelper.markStart("methodName", System.nanoTime());
-//        TimeHelper.markEnd("methodName", System.nanoTime());
-//        Log.e("jeanboy", TimeHelper.getCostTime("methodName"));
-//        Log.e("jeanboy", "-------method() end-----------");
+        Log.e("jeanboy", "-------method() start-----------");
+        TimeHelper.markStart("methodName", System.nanoTime());
+        TimeHelper.markEnd("methodName", System.nanoTime());
+        Log.e("jeanboy", TimeHelper.getCostTime("methodName"));
+        Log.e("jeanboy", "-------method() end-----------");
     }
 }
