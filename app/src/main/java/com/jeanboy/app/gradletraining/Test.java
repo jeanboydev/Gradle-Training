@@ -9,6 +9,14 @@ import android.util.Log;
 public class Test {
 
     public static void main(String[] args) {
-        Log.e("jeanboy","-------onCreate()-------");
+        Log.e("jeanboy", "-------onCreate()-------");
+    }
+
+    public void testTime() {
+//        Log.e("jeanboy", "-------method() start-----------");
+//        TimeHelper.markStart("methodName", System.nanoTime());
+//        TimeHelper.markEnd("methodName", System.nanoTime());
+//        Log.e("jeanboy", TimeHelper.getCostTime("methodName"));
+//        Log.e("jeanboy", "-------method() end-----------");
     }
 }

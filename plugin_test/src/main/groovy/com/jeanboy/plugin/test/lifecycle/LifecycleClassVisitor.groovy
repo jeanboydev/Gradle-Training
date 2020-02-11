@@ -1,4 +1,4 @@
-package com.jeanboy.plugin.test
+package com.jeanboy.plugin.test.lifecycle
 
 import org.objectweb.asm.ClassVisitor
 import org.objectweb.asm.ClassWriter

@@ -6,11 +6,15 @@ dependencies {
     implementation localGroovy() // groovy sdk
 
     implementation 'com.android.tools.build:gradle:3.5.3' // Transform API
+    implementation 'com.jeanboy.plugin.annotation:TimeMark:1.0.1'
 }
 
 repositories {
     jcenter()
     mavenCentral()
+    mavenCentral() {
+        url = uri('../PluginRepository')
+    }
 }
 
 def groupName = 'com.jeanboy.plugin.test' // 组名
