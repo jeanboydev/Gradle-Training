@@ -40,7 +40,7 @@ class TimeAdviceAdapter extends AdviceAdapter {
             // TimeHelper.markStart("methodName", System.nanoTime());
             mv.visitLdcInsn(methodName)
             mv.visitMethodInsn(INVOKESTATIC, "java/lang/System", "nanoTime", "()J", false)
-            mv.visitMethodInsn(INVOKESTATIC, "com/jeanboy/plugin/test/time/TimeHelper", "markStart", "(Ljava/lang/String;J)V", false)
+            mv.visitMethodInsn(INVOKESTATIC, "com/jeanboy/plugin/annotation/TimeHelper", "markStart", "(Ljava/lang/String;J)V", false)
         }
     }
 
@@ -51,12 +51,12 @@ class TimeAdviceAdapter extends AdviceAdapter {
             // TimeHelper.markEnd("methodName", System.nanoTime());
             mv.visitLdcInsn(methodName)
             mv.visitMethodInsn(INVOKESTATIC, "java/lang/System", "nanoTime", "()J", false)
-            mv.visitMethodInsn(INVOKESTATIC, "com/jeanboy/plugin/test/time/TimeHelper", "markEnd", "(Ljava/lang/String;J)V", false)
+            mv.visitMethodInsn(INVOKESTATIC, "com/jeanboy/plugin/annotation/TimeHelper", "markEnd", "(Ljava/lang/String;J)V", false)
 
             // Log.e("jeanboy", TimeHelper.getCostTime("methodName"));
             mv.visitLdcInsn(className)
             mv.visitLdcInsn(methodName)
-            mv.visitMethodInsn(INVOKESTATIC, "com/jeanboy/plugin/test/time/TimeHelper", "getCostTime", "(Ljava/lang/String;)Ljava/lang/String;", false)
+            mv.visitMethodInsn(INVOKESTATIC, "com/jeanboy/plugin/annotation/TimeHelper", "getCostTime", "(Ljava/lang/String;)Ljava/lang/String;", false)
             mv.visitMethodInsn(INVOKESTATIC, "android/util/Log", "e", "(Ljava/lang/String;Ljava/lang/String;)I", false)
             mv.visitInsn(POP)
 
