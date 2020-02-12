@@ -1,1 +1,29 @@
-include ':app', ':buildSrc', ':plugin_test', ':plugin_annotation'
+include ':app', ':buildSrc', ':plsugin_test', ':plugin_annotation'
+
+getGradle().addBuildListener(new BuildListener() {
+
+    @Override
+    void buildStarted(Gradle gradle) {
+        println("settings.gradle----------开始构建-----------")
+    }
+
+    @Override
+    void settingsEvaluated(Settings settings) {
+        println("settings.gradle----------评估完成，settings.gradle 中代码执行完毕-----------")
+    }
+
+    @Override
+    void projectsLoaded(Gradle gradle) {
+        println("settings.gradle----------加载完成，初始化阶段结束-----------")
+    }
+
+    @Override
+    void projectsEvaluated(Gradle gradle) {
+        println("settings.gradle----------所有项目评估完成，配置阶段结束-----------")
+    }
+
+    @Override
+    void buildFinished(BuildResult result) {
+        println("settings.gradle----------构建结束-----------")
+    }
+})
